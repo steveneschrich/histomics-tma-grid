@@ -1,0 +1,42 @@
+extends ./panel.pug
+
+block title
+    | #[span.icon-tags] TMA Grid
+
+block content
+    div(class="input-group-tma" id="input-group-tma")
+        - var n = 0
+        table(class="tma-panel-table table table-bordered py-5")
+            thead(class="thead-dark tma-table-thead")
+                tr 
+                    if(orientation == "vertical")
+                        - var columLabel = "Sector ⬇ / # ➡"
+                    else
+                        - var columLabel = "# ⬇ / Sector ➡"
+
+                    th(class="text-center") #{columLabel}
+                        - var n = 0
+                        while n < items[0].length
+                            if(orientation == "vertical")
+                                - var columnName = (n + 1)
+                            else
+                                - var columnName = (n + 10).toString(36).toUpperCase()
+                            th(scope="col" class="text-center center") #{columnName}
+                            - n++
+            tbody
+                each row, indexR in items
+                    tr
+                        if(orientation == "vertical")
+                            - var rowName = (indexR + 10).toString(36).toUpperCase()
+                        else
+                            - var rowName = (indexR + 1)
+                        each column, index in row
+                            td(class="g-tma-td text-center" style=(column.isHightlighted ? "background-color: cornsilk" : ""))
+                                div(class="card box-shadow")
+                                    if column.histomicsUrl
+                                        - var histomicsUrl = column.histomicsUrl
+                                        - var tooltipTitle = column.name
+                                        a(href=histomicsUrl, data-toggle="tooltip" title=tooltipTitle)
+                                            - var url = column.thumbnail;
+                                            img(class="g-tma-column-image card-img-top" src=url)
+

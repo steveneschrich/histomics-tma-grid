@@ -1,0 +1,48 @@
+div(class="g-tma-sample-label")
+    h1 #{metadata.stain.name}
+    p(class="g-tma-lead-text") #{metadata.stain.description}
+
+div(class="g-tma-container")
+    
+    table(class="table table-bordered py-5")
+        thead(class="thead-dark")
+            tr 
+                if(layout == "portrait")
+                    - var columLabel = "Sector ⬇ / # ➡"
+                else
+                    - var columLabel = "# ⬇ / Sector ➡"
+
+                th(class="text-center") #{columLabel}
+                    - var n = 0
+                    while n < items[0].length
+                        if(layout == "portrait")
+                            - var columnName = (n + 1)
+                        else
+                            - var columnName = (n + 10).toString(36).toUpperCase()
+                        th(scope="col" class="text-center center") #{columnName}
+                        - n++
+
+
+        tbody
+            each row, indexR in items
+                tr
+                    if(layout == "portrait")
+                        - var rowName = (indexR + 10).toString(36).toUpperCase()
+                    else
+                        - var rowName = (indexR + 1)
+                    th(scope="row" class="text-center col-md-1") #{rowName}
+                    each column, index in row
+                        td(class="g-tma-td text-center col-md-3" style=(column.isHightlighted ? "background-color: cornsilk" : ""))
+                            div(class="card box-shadow")
+                                if column.histomicsUrl
+                                    - var histomicsUrl = column.histomicsUrl
+                                    a(href=histomicsUrl, target="_blank")
+                                        - var url = column.thumbnail;
+                                        img(class="g-tma-column-image card-img-top" src=url)
+                                    div(class="card-body")
+                                        p(class="card-text g-tma-column-meta") file: #{column.name}
+                                        p(class="card-text g-tma-column-meta") Core id: #{column.core_id}
+                                        p(class="card-text g-tma-column-meta") Tissue: #{column.tissue} 
+                                        p(class="card-text g-tma-column-meta") Diagnosis: #{column.diagnosis}
+                                        p(class="card-text g-tma-column-meta") Percent Tumor: #{column.percent_tumor}
+                                        
