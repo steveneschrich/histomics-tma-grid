@@ -1,7 +1,6 @@
 const { VueLoaderPlugin } = require("vue-loader");
 
 module.exports = function (config) {
-    console.log(config.module);
     config.module.rules.push({
         resource: {
             test: /\.vue$/,

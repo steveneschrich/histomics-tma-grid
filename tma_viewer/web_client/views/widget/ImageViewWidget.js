@@ -98,7 +98,7 @@ wrap(ImageView, "render", function (render) {
                             <iframe
                                 id="tma-iframe"
                                 class="embed-responsive-item" 
-                                src="http://localhost:8080/#TMAView/${folderId}?isEmpty=true&hightlight=${imageId}">
+                                src="${window.location.origin}/#TMAView/${folderId}?isEmpty=true&hightlight=${imageId}">
                             </iframe>
                         </div>
                     </div>

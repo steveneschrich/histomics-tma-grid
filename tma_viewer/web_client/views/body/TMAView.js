@@ -25,7 +25,6 @@ const TMAView = View.extend({
         getTMAData(settings.folderId, settings.settings.hightlightId);
         events.once("query:tma-table-data", function (data) {
             if (data.error) {
-                console.log(data.error);
                 $(".g-default-layout").append(
                     errorView({
                         description: data.description,

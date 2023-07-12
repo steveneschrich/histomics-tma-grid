@@ -12,7 +12,7 @@ wrap(HeaderImageView, "render", function (render) {
     if (this.imageModel !== null) {
         $("[id*=tma-iframe]").attr(
             "src",
-            `http://localhost:8080/#TMAView/${this.imageModel.attributes.folderId}?isEmpty=true&hightlight=${this.imageModel.attributes._id}`
+            `${window.location.origin}/#TMAView/${this.imageModel.attributes.folderId}?isEmpty=true&hightlight=${this.imageModel.attributes._id}`
         );
     }
 
