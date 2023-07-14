@@ -4,7 +4,10 @@ with open('README.rst') as readme_file:
     readme = readme_file.read()
 
 requirements = [
-    'girder>=3.0.0a1'
+    'girder>=3.0.0a1',
+    'girder-slicer-cli-web>=1.2.3',
+    'girder-large-image-annotation>=1.23.0',
+    'histomicsui>=1.4.5'
 ]
 
 setup(

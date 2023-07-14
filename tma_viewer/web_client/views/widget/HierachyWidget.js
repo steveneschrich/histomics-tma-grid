@@ -1,6 +1,5 @@
 import { wrap } from "@girder/core/utilities/PluginUtils";
 import HierarchyWidget from "@girder/core/views/widgets/HierarchyWidget";
-
 const _TMA_STAIN_FOLDER_TYPE = "tissue_microarray_stain";
 
 wrap(HierarchyWidget, "render", function (render) {

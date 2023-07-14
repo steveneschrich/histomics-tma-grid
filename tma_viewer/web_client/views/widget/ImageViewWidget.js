@@ -55,7 +55,6 @@ wrap(ImageView, "render", function (render) {
 
         if ($(".tma-panel-table").length === 0) {
             if (data.error && $(".g-tma-error-label").length === 0) {
-                console.log("APPENDING");
                 $(".s-panel-group.h-panel-group-right").append(
                     errorView({
                         description: data.description,
@@ -95,11 +94,11 @@ wrap(ImageView, "render", function (render) {
                 <div class="modal-dialog modal-lg" style="height: 800px; width: 80%">
                     <div class="modal-content">
                         <div class="embed-responsive embed-responsive-16by9">
-                            <iframe
+                            <embed
                                 id="tma-iframe"
                                 class="embed-responsive-item" 
                                 src="${window.location.origin}/#TMAView/${folderId}?isEmpty=true&hightlight=${imageId}">
-                            </iframe>
+                            </embed>
                         </div>
                     </div>
                 </div>

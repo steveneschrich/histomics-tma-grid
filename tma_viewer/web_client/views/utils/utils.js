@@ -74,7 +74,7 @@ const getItemsUsingFolderId = (folderId) => {
  * API call to get the id of the parent folder
  * @return {*}
  */
-const getParentFolderId = (folderId) => {
+export const getParentFolderId = (folderId) => {
     return restRequest({
         url: `folder/${folderId}`,
     });
@@ -113,6 +113,9 @@ export const getTMAData = (folderId, hightlightId, imageSize = 150) => {
     if (!folderId) return;
     return getParentFolderId(folderId)
         .then((folder) => {
+            if(!folder.meta.type) {
+                return Promise.reject("Invalid folder type")
+            }
             return folder.parentId;
         })
         .then((parentId) => {
@@ -288,12 +291,6 @@ export const getTMAData = (folderId, hightlightId, imageSize = 150) => {
                             ] = item;
                         }
                     });
-
-                    // const sortedItems = tmaItems.sort((a, b) =>
-                    //     a.name.localeCompare(b.name)
-                    // );
-
-                    // const chunksByName = groupByPositionInName(sortedItems);
 
                     const currentLayout =
                         STAINMetadataJSONStructure.visualization

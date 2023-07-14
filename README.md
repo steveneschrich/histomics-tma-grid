@@ -70,6 +70,6 @@ For local development you'll need to follow some steps:
 If you want to watch the changes when you are coding use the following command:
 - *For ubuntu and MAC users*:
 ```bash
-> sudo ls tma_viewer/web_client/**/*.js | entr -r -s 'girder build --dev --no-reinstall && GIRDER_MONGO_URI='mongodb://localhost:61784/girder' girder serve --dev'
+> sudo ls tma_viewer/web_client/**/*.js | entr -r -s 'girder build --dev --no-reinstall && GIRDER_MONGO_URI='mongodb://localhost:51467/girder' girder serve --dev'
 ```
 > *This command will listen to any change that you do in the web_client .js files and build & serve again the project without re-installing node modules.*
