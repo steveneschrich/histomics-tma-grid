@@ -31,8 +31,8 @@ setup(
     keywords='girder-plugin, tma_viewer',
     name='tma_viewer',
     packages=find_packages(exclude=['test', 'test.*']),
-    url='https://github.com/girder/tma_viewer',
-    version='0.1.2',
+    url='https://github.com/steveneschrich/histomics-tma-grid',
+    version='0.1.4',
     zip_safe=False,
     entry_points={
         'girder.plugin': [

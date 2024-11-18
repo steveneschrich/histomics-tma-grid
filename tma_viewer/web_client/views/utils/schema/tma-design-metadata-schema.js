@@ -1,78 +1,85 @@
 export const TMADesignMetadataSchema = {
-    type: "object",
-    properties: {
-        type: {
-            type: "string",
+  type: "object",
+  properties: {
+    type: {
+      type: "string",
+      enum: ["tissue_microarray"],
+    },
+    name: {
+      type: "string",
+    },
+    design: {
+      type: "object",
+      properties: {
+        num_rows: {
+          type: "integer",
+          minimum: 1,
         },
-        name: {
-            type: "string",
+        num_cols: {
+          type: "integer",
+          minimum: 1,
         },
-        design: {
+        layout: {
+          type: "string",
+          enum: ["landscape", "portrait"],
+        },
+        cores: {
+          type: "array",
+          items: {
             type: "object",
             properties: {
-                num_rows: {
-                    type: "integer",
-                },
-                num_cols: {
-                    type: "integer",
-                },
-                layout: {
-                    type: "string",
-                    enum: ["landscape", "portrait"],
-                },
-                cores: {
-                    type: "array",
-                    items: {
-                        type: "object",
-                        properties: {
-                            id: {
-                                type: ["string", "integer"],
-                            },
-                            Description: {
-                                type: "string",
-                            },
-                            row_index: {
-                                type: "integer",
-                            },
-                            col_index: {
-                                type: "integer",
-                            },
-                            is_empty: {
-                                type: "boolean",
-                            },
-                        },
-                        required: [
-                            "id",
-                            "Description",
-                            "row_index",
-                            "col_index",
-                            "is_empty",
-                        ],
-                    },
-                },
-            },
-            required: ["num_rows", "num_cols", "layout", "cores"],
-        },
-        core_annotation: {
-            type: "array",
-            items: {
+              study_core_id: {
+                type: "string",
+              },
+              core_id: {
+                oneOf: [{ type: "string" }, { type: "integer" }],
+              },
+              core_label: {
+                oneOf: [{ type: "string" }, { type: "integer" }],
+              },
+              tma_number: {
+                type: "integer",
+                minimum: 1,
+              },
+              row_index: {
+                type: "integer",
+                minimum: 1,
+              },
+              row_label: {
+                type: "string",
+              },
+              col_index: {
+                type: "integer",
+                minimum: 1,
+              },
+              col_label: {
+                oneOf: [{ type: "string" }, { type: "integer" }],
+              },
+              is_empty: {
+                type: "boolean",
+              },
+              core_annotations: {
                 type: "object",
-                properties: {
-                    id: {
-                        type: "integer",
-                    },
-                    tissue: {
-                        type: "string",
-                    },
-                    diagnosis: {
-                        type: "string",
-                    },
-                    percent_tumor: {
-                        type: "string",
-                    },
+                additionalProperties: {
+                  type: ["string", "number", "boolean", "null"],
                 },
+              },
             },
+            required: [
+              "study_core_id",
+              "core_id",
+              "tma_number",
+              "row_index",
+              "row_label",
+              "col_index",
+              "col_label",
+              "is_empty",
+            ],
+          },
         },
+      },
+      required: ["num_rows", "num_cols", "layout", "cores"],
     },
-    required: ["type", "name", "design", "core_annotation"],
+  },
+  required: ["type", "name", "design"],
 };
