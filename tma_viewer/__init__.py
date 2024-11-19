@@ -1,4 +1,4 @@
-from girder import plugin
+from girder import events, logger, plugin
 from .rest import cat
 
 class GirderPlugin(plugin.GirderPlugin):
@@ -6,5 +6,8 @@ class GirderPlugin(plugin.GirderPlugin):
     CLIENT_SOURCE_PATH = 'web_client'
 
     def load(self, info):
-        # add plugin loading logic here
+        try:
+            plugin.getPlugin('histomicsui').load(info)
+        except Exception:
+            logger.info('histomics plugin is unavailable.')
         pass
