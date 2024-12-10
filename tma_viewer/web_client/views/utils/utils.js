@@ -61,7 +61,7 @@ const transpose = array => {
  */
 const getItemsUsingFolderId = folderId => {
   return restRequest({
-    url: `item?folderId=${folderId}&limit=100&offset=0&sort=name&sortdir=1`,
+    url: `item?folderId=${folderId}&limit=300&offset=0&sort=name&sortdir=1`,
   });
 };
 
@@ -201,14 +201,13 @@ export const getTMAData = (folderId, hightlightId, imageSize = 150) => {
 
       if (
         TMAMetadataJSONStructure.design.cores.length !==
-        STAINMetadataJSONStructure.length + blankCount
+        STAINMetadataJSONStructure.length
       ) {
         events.trigger("query:tma-table-data", {
-          description: `The Stain Metadata JSON File has errors: The number of cores in the design is not equal to the number of the in the stain
-                        - Not counting the blank cores -`,
+          description: `The Stain Metadata JSON File has errors: The number of cores in the design is not equal to the number of the in the stain`,
           error: `
                     TMA Cores count: ${TMAMetadataJSONStructure.design.cores
-                      .length - blankCount}
+                      .length }
                     Core Lenght: ${STAINMetadataJSONStructure.length}`,
         });
         return;
@@ -249,7 +248,6 @@ export const getTMAData = (folderId, hightlightId, imageSize = 150) => {
           });
 
           tmaItems.forEach(item => {
-            console.log(item);
             const selectedCore = STAINMetadataJSONStructure.find(
               core => core.image === item.name,
             );
@@ -272,7 +270,7 @@ export const getTMAData = (folderId, hightlightId, imageSize = 150) => {
               item.col_index = designCore.col_index;
               item.col_label = designCore.col_label;
               item.meta = coreAnnotation.core_annotations;
-
+              
               resultingMatrix[parseInt(designCore.row_index) - 1][
                 parseInt(designCore.col_index) - 1
               ] = item;

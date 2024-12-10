@@ -57,7 +57,8 @@ For local development you'll need to follow some steps:
 **1.** Make sure you have the right `node` version installed locally, we recommend to use `nvm` for managing `node` versions:
 
 ```bash
-> nvm use 12.22.12
+> nvm use 14.21.3
+> pyenv use 3.9.18
 ```
 
 **2.** In other terminal, in the root folder, run `docker`, it will create a container running `mongodb` :
